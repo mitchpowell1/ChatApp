@@ -1,0 +1,33 @@
+.chat-view {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-areas:
+    "header"
+    "chat"
+    "chat"
+    "chat"
+    "chat"
+    "chat"
+    "chat"
+    "message"
+    "message";
+}
+
+.chat-section {
+  border: 1px solid black;
+  padding: 5px;
+  margin: 1px;
+}
+
+.header-window {
+  grid-area: header;
+}
+
+.chat-window {
+  grid-area: chat;
+}
+
+.message-window {
+  grid-area: message;
+}
