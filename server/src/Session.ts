@@ -55,7 +55,7 @@ export class Session {
   }
 
   handleNewUserConnection(payload: any, socket: WebSocket) {
-    console.log(`Handling a new user connection: ${payload}`);
+    console.log(`Handling a new user connection: ${JSON.stringify(payload)}`);
     const userId = payload.userId;
     const user = this.users[userId];
     this.clients.set(socket, payload.userId);
@@ -85,7 +85,6 @@ export class Session {
 
   addClient(socket: WebSocket) {
     console.log(`Socket connected to session ${this.id}`);
-    console.log(`this.clients: ${this.clients}`);
     socket.on("message", (data) => this.handleIncomingMessage(data, socket));
     socket.on("close", () => this.handleSocketClosed(socket));
   }

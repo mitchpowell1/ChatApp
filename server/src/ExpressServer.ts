@@ -76,7 +76,7 @@ export const getExpressServer = (
     const user = userManager.getUser(userId);
 
     console.log(
-      `Received a joinSession request on session ${sessionId} for user with id ${userId}}`
+      `Received a joinSession request on session ${sessionId} for user with id ${userId}`
     );
 
     if (!(userId && sessionId && user && session)) {
