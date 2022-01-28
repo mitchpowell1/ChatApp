@@ -1,24 +1,38 @@
 import React from "react";
-import { Session } from "../../model/Session";
+import { Chat } from "../../component/Chat";
 import "./ChatView.css";
 
 interface ChatViewProps {
-  session: Session;
+  sessionId: string;
+  sessionUsers: { [userId: string]: string };
+  onlineUsers: { [userId: string]: string };
+  chats: { [userId: string]: string }[];
   currentUserId: string;
+  onSendMessage: (message: string) => unknown;
+}
+
+interface ChatViewState {
+  message: string;
 }
 /**
  * Displays a chat session between two users
  */
-export class ChatView extends React.Component<ChatViewProps> {
+export class ChatView extends React.Component<ChatViewProps, ChatViewState> {
   constructor(props: ChatViewProps) {
     super(props);
+    this.state = {
+      message: "",
+    };
+  }
+
+  submitMessage() {
+    this.props.onSendMessage(this.state.message);
+    this.setState({ message: "" });
   }
 
   render() {
-    const {
-      session: { users, id: sessionId },
-      currentUserId,
-    } = this.props;
+    const { sessionId, sessionUsers, onlineUsers, currentUserId, chats } =
+      this.props;
 
     return (
       <div className="chat-view">
@@ -27,16 +41,33 @@ export class ChatView extends React.Component<ChatViewProps> {
           <span>{sessionId}</span>
           <h3>Participants:</h3>
           <ul>
-            {this.props.session.users.map(({ userName, userId }) => {
-              if (userId === currentUserId) {
-                return <li>{userName} (You)</li>;
-              }
-              return <li>{userName}</li>;
+            {Object.entries(onlineUsers).map((entry) => {
+              const [userId, userName] = entry;
+              const displayName =
+                userId === currentUserId ? `${userName} (you)` : userName;
+              return <li key={userId}> {displayName}</li>;
             })}
           </ul>
         </section>
-        <section className="chat-section chat-window">chat</section>
-        <section className="chat-section message-window">message</section>
+        <section className="chat-section chat-window">
+          {chats.map((chat) => (
+            <Chat userName={sessionUsers[chat.userId]} message={chat.message} />
+          ))}
+        </section>
+        <section className="chat-section message-window">
+          <textarea
+            className="message-textarea"
+            value={this.state.message}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                this.submitMessage();
+              }
+            }}
+            onChange={(e) => this.setState({ message: e.target.value })}
+          ></textarea>
+          <button onClick={this.submitMessage.bind(this)}>Send</button>
+        </section>
       </div>
     );
   }

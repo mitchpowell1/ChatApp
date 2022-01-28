@@ -30,4 +30,11 @@
 
 .message-window {
   grid-area: message;
+  display: flex;
+  flex-direction: row;
+}
+
+.message-textarea {
+  flex-grow: 2;
+  resize: none;
 }

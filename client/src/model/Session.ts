@@ -1,7 +1,7 @@
 import { User } from "./User";
 
 export interface Session {
-  id: string;
+  sessionId: string;
   users: User[];
-  chats: string[];
+  chats: { userId: string; message: string }[];
 }
