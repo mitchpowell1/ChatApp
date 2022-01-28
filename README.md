@@ -8,7 +8,7 @@ The frontend was written with `React` and `TypeScript`, the backend was created 
 
 ## Prerequisites
 
-In order to run this application you will need `npm` installed on your machine.
+In order to run this application you will need `npm` installed on your machine. Tested with npm versions `6.14.12` and `7.7.6`
 
 ## How to run
 
