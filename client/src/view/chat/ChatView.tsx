@@ -1,5 +1,5 @@
 import React from "react";
-import { Chat } from "../../component/Chat";
+import { Chat } from "./Chat";
 import "./ChatView.css";
 
 interface ChatViewProps {
@@ -50,8 +50,12 @@ export class ChatView extends React.Component<ChatViewProps, ChatViewState> {
           </ul>
         </section>
         <section className="chat-section chat-window">
-          {chats.map((chat) => (
-            <Chat userName={sessionUsers[chat.userId]} message={chat.message} />
+          {chats.map((chat, index) => (
+            <Chat
+              key={index}
+              userName={sessionUsers[chat.userId]}
+              message={chat.message}
+            />
           ))}
         </section>
         <section className="chat-section message-window">

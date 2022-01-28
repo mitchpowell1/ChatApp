@@ -4,7 +4,7 @@
 
 This application is a simple implementation of a session-based real-time chat application using websockets.
 
-The frontend was written with `React` and `TypeScript`, the backend was created using `node` with the help of `express` (a WebServer library), `ws` (a WebSockets library)
+The frontend was written with `React` and `TypeScript`, the backend was created using `node` with the help of `express` (a WebServer library), and `ws` (a WebSockets library)
 
 ## Prerequisites
 
@@ -55,24 +55,24 @@ At this point the script should open your default browser to the chat applicatio
 
 Once started, the application will give you the choice to either start a new chat, or to join an existing chat session. To start, select the `Start a new chat` option and hit select
 
-![StartChat](StartChat.PNG)
+![StartChat](doc/StartChat.PNG)
 
 At this point you will be taken to a screen where it will ask you to input a username. Enter a name to be used as your display name and hit "Continue"
 
-![StartChatUsername](StartChatUsername.PNG)
+![StartChatUsername](doc/StartChatUsername.PNG)
 
 You will now be directed to the main chat screen. Take note of the `Session ID` listed in the top left corner of the screen, as this is what you will provide to other users who would like to join your session.
 
-![ChatScreenSingleUser](ChatScreenSingleUser.PNG)
+![ChatScreenSingleUser](doc/ChatScreenSingleUser.PNG)
 
 At this point open a new tab or a new browser window and navigate to `localhost:3000` again.
 
 This time, select the "Join an existing chat using a session ID" option from the menu. When you hit select this time, you will be taken to a screen that allows you to enter a session ID along with your desired username. Use the Session ID from the open chat window from the previous step to join the same chat session.
 
-![JoinChat](JoinChat.PNG)
+![JoinChat](doc/JoinChat.PNG)
 
 Upon selecting join you will end up in a similar screen as the first time. You should now see that both users are displayed in both windows, and that chats typed into the chat area at the bottom of the screen are displayed to both users as well.
 
-![PopulatedChat](PopulatedChat.PNG)
+![PopulatedChat](doc/PopulatedChat.PNG)
 
 Happy chatting!
