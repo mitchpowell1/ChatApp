@@ -1,4 +1,6 @@
 import * as express from "express";
+import { sessionToSessionDto } from "./model/SessionDTO";
+import { userToUserDto } from "./model/UserDTO";
 import { SessionManager } from "./SessionManager";
 import { UserManager } from "./UserManager";
 
@@ -31,7 +33,7 @@ export const getExpressServer = (
     }
 
     const user = userManager.createUser(userName);
-    res.send(user);
+    res.send(userToUserDto(user));
   });
 
   /**
@@ -53,7 +55,7 @@ export const getExpressServer = (
     const session = sessionManager.createSession(user);
 
     res.statusCode = 200;
-    res.send(session);
+    res.send(sessionToSessionDto(session));
   });
 
   /**
@@ -85,7 +87,7 @@ export const getExpressServer = (
     session.addUser(user);
 
     res.statusCode = 200;
-    res.send(session);
+    res.send(sessionToSessionDto(session));
   });
 
   return expressServer;
